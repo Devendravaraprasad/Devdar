@@ -114,55 +114,68 @@
 		</div>
 	</div>
 
+
 	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			var orderDetails = JSON.parse(sessionStorage.getItem('orderDetails')) || [];
-			var ordersListDiv = document.getElementById('orderItemsContainer');
-			var orderItems = '';
-
-			if (orderDetails.length === 0) {
-				ordersListDiv.innerHTML = "<p>You need to first add items to your cart.</p>";
-				document.getElementById('orderHeader').style.display = 'none';
-			} else {
-				orderDetails.forEach(item => {
-					var itemTotalPrice = parseFloat(item.price) * item.quantity;
-					orderItems += `
-						<div class="card">
-							<img src="${item.image}" alt="${item.name}">
-							<div>
-								<p><strong>Name:</strong> ${item.name}</p>
-								<p><strong>Price:</strong> ${item.price}</p>
-								<p><strong>Quantity:</strong> ${item.quantity}</p>
-							</div>
-						</div>`;
-				});
-
-				var randomId = localStorage.getItem('orderId');
-				var orderDateTime = localStorage.getItem('orderDateTime');
-
-				if (!randomId) {
-					randomId = Math.random().toString(36).substr(2, 9);
-					localStorage.setItem('orderId', randomId);
-				}
-
-				if (!orderDateTime) {
-					var date = new Date();
-					orderDateTime = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-					localStorage.setItem('orderDateTime', orderDateTime);
-				}
-
-				var orderHeaderDiv = document.getElementById('orderHeader');
-				orderHeaderDiv.textContent = `Order #1 placed on ${orderDateTime} | ID: ${randomId}`;
+	document.addEventListener('DOMContentLoaded', function () {
+		var orderCounter = parseInt(localStorage.getItem('orderCounter')) || 1;
+		var orderDetails = JSON.parse(sessionStorage.getItem('orderDetails')) || [];
+		var ordersListDiv = document.getElementById('ordersList');
+		var orderItems = '';
+	
+		if (orderDetails.length === 0) {
+			ordersListDiv.innerHTML = "<p>You need to first add items to your cart.</p>";
+			document.getElementById('orderHeader').style.display = 'none';
+		} else {
+			orderDetails.forEach(item => {
+				var itemTotalPrice = parseFloat(item.price) * item.quantity;
+				orderItems += `
+					<div class="card">
+						<img src="${item.image}" alt="${item.name}">
+						<div>
+							<p><strong>Name:</strong> ${item.name}</p>
+							<p><strong>Price:</strong> ${item.price}</p>
+							<p><strong>Quantity:</strong> ${item.quantity}</p>
+						</div>
+					</div>`;
+			});
+	
+			var randomId = `ORDER${orderCounter}`;
+			var date = new Date();
+			var orderDateTime = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+	
+			localStorage.setItem(randomId, JSON.stringify({
+				orderDetails: orderDetails,
+				orderDateTime: orderDateTime
+			}));
+	
+			var orderHeaderDiv = document.getElementById('orderHeader');
+			orderHeaderDiv.textContent = `Order #${orderCounter} placed on ${orderDateTime} | ID: ${randomId}`;
+		}
+	
+		if (!ordersListDiv.innerHTML.includes(orderItems)) {
+			ordersListDiv.innerHTML += orderItems;
+		}
+	
+		var totalPrice = orderDetails.reduce((total, item) => total + parseFloat(item.price) * item.quantity, 0);
+		var totalPriceDiv = document.getElementById('totalPrice');
+		totalPriceDiv.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+	
+		for (let i = 1; i < localStorage.length; i++) {
+			var key = localStorage.key(i);
+			var order = JSON.parse(localStorage.getItem(key));
+			if (order) {
+				ordersListDiv.innerHTML += `
+					<div class="order-box">
+						<div>Order #${i}</div>
+						<div>${JSON.stringify(order)}</div>
+					</div>
+				`;
 			}
-
-			ordersListDiv.innerHTML = orderItems;
-
-			// Calculate and display total price
-			var totalPrice = orderDetails.reduce((total, item) => total + parseFloat(item.price) * item.quantity, 0);
-			var totalPriceDiv = document.getElementById('totalPrice');
-			totalPriceDiv.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
-		});
-	</script>
+		}
+	
+		localStorage.setItem('orderCounter', orderCounter.toString());
+	});
+</script>	
 
 
 <!-- for user name -->
