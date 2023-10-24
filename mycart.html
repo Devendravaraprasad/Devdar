@@ -82,6 +82,7 @@
 <div id="content">
     <script>
         // Print price, quantity, name, and image values from listCards in the console
+        window.addEventListener('load', function () {
         console.log("Price, Quantity, Name, and Image:");
         let listCards = JSON.parse(sessionStorage.getItem('listCards')) || [];
         let filteredListCards = listCards.filter(item => item !== null);
@@ -89,9 +90,12 @@
             console.log(`Price: ${item.price}, Quantity: ${item.quantity}, Name: ${item.name}, Image: ${item.image}`);
         });
 
+
+
+        
         // Print price, quantity, name, and image values from listCards on the page
         var outputDiv = document.createElement("div");
-        outputDiv.innerHTML = "<h3>Price, Quantity, Name, and Image:</h3>";
+        // outputDiv.innerHTML = "<h3>Price, Quantity, Name, and Image:</h3>";
         filteredListCards.forEach(item => {
             let card = document.createElement("div");
             card.classList.add("card");
@@ -108,12 +112,21 @@
 
         // Add Confirm Order button
         // Add Confirm Order button
+// Add Confirm Order button
 var button = document.createElement("button");
 button.innerHTML = "Confirm Order";
 button.classList.add("button");
 button.onclick = function() {
     // Storing the data in sessionStorage
     sessionStorage.setItem('orderDetails', JSON.stringify(filteredListCards));
+    var orderCounter = parseInt(localStorage.getItem('orderCounter')) || 1; // Get the order counter from localStorage
+        var orderID = `order${orderCounter}`; // Generate the order ID
+        localStorage.setItem(orderID, JSON.stringify(filteredListCards));
+         // Increment the order counter
+         orderCounter++;
+        localStorage.setItem('orderCounter', orderCounter); // Update the order counter in localStorage
+
+
 
     // Add your functionality here
     var successMessage = document.createElement("p");
@@ -121,7 +134,14 @@ button.onclick = function() {
     successMessage.textContent = "Your order has been placed successfully!";
     document.getElementById('content').appendChild(successMessage);
     button.remove();
+
+    // Introduce a 3-second delay before clearing the cart
+    setTimeout(function() {
+        sessionStorage.removeItem('listCards'); // Clear the cart after 3 seconds
+    }, 10); // 3 seconds delay
 };
+
+document.body.appendChild(button);
 
 
 
@@ -136,7 +156,14 @@ document.body.appendChild(button);
 
         // Add a message to inform the user to add items to the cart
         var message = document.createElement("p");
-        message.textContent = "No items in the cart. Please add items to the cart.";
+        message.textContent = 'No items in the cart. Please add items to the cart.';
+        message.style.padding = "15px";
+message.style.backgroundColor = "#f8d7da";
+message.style.textAlign="center"
+message.style.border = "1px solid #f5c6cb";
+message.style.borderRadius = "5px";
+message.style.color = "#721c24";
+message.style.marginTop = "20px";
         document.getElementById('content').appendChild(message);
     } else {
         // Add My Orders button only if there are items in the cart
@@ -149,49 +176,13 @@ document.body.appendChild(button);
         };
         document.body.appendChild(myOrdersButton);
     }
-
+});
     </script>
     
 </div>
 
 <p><br></p>
-<footer class="section-p1">
-    
-    <div class="col">
-        <h4>Contact</h4>
-        <p><strong>Adress:</strong>532 MG Road, Street 29, Bengaluru </p>
-        <p><strong>Phone:</strong>08198-229312/(+91)93xxxxx785</p>
-        <p><strong>Hours:</strong>8:00 - 20:00 Mon-Sat</p>
-        <div class="follow">
-            <h4>Follow us</h4>
-            <div class="icons">
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-youtube"></i>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <h4>About</h4>
-        <a href="#">About Us</a>
-        <a href="#">Delivery Information</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a>
-        <a href="#">Contact Us</a>
-    </div>
-    <div class="col">
-        <h4>My Account</h4>
-        <a href="#">Sign In</a>
-        <a href="#">View Cart</a>
-        <a href="#">Help</a>
-    </div>
-    <div class="copyright">
-        <hr><hr>
-        <br>
-        <p>&copy; Copyright 2023, Devdar Sweets</p>
-    </div>
-</footer>
+
 <!-- 00000000000000000000000000000000000000000000000000 -->
 
 <script>
@@ -268,7 +259,43 @@ let CheckCred = () => {
 window.addEventListener('load', CheckCred);
 </script>
 
-
+<!-- <footer class="section-p1" >
+    
+    <div class="col">
+        <h4>Contact</h4>
+        <p><strong>Adress:</strong>532 MG Road, Street 29, Bengaluru </p>
+        <p><strong>Phone:</strong>08198-229312/(+91)93xxxxx785</p>
+        <p><strong>Hours:</strong>8:00 - 20:00 Mon-Sat</p>
+        <div class="follow">
+            <h4>Follow us</h4>
+            <div class="icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <h4>About</h4>
+        <a href="#">About Us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact Us</a>
+    </div>
+    <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="#">View Cart</a>
+        <a href="#">Help</a>
+    </div>
+    <div class="copyright">
+        <hr><hr>
+        <br>
+        <p>&copy; Copyright 2023, Devdar Sweets</p>
+    </div>
+</footer> -->
 
 </body>
 </html>
