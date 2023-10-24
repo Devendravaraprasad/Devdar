@@ -1,203 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>E-commerce website</title>
-	<script src="https://kit.fontawesome.com/1ff2bafd28.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url(images/loginback.png) no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wrapper {
+            width: 420px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: aliceblue;
+            border-radius: 10px;
+            padding: 30px 40px;
+        }
+
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .wrapper .input-box {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            font-size: 16px;
+            color: #ffffff;
+            padding: 20px 45px 20px 20px;
+        }
+
+        .input-box input::placeholder {
+            color: #ffff;
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: black;
+        }
+
+        .wrapper .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14.5px;
+            margin: -15px 0 15px;
+        }
+
+        .remember-forgot label input {
+            accent-color: #fff;
+            margin-right: 3px;
+            position: relative;
+            top: 1.5px;
+        }
+
+        .remember-forgot a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+
+        .wrapper #login_submit,
+        #google {
+            width: 100%;
+            height: 45px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b, #ffdb86);
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .or {
+            position: relative;
+            text-align: center;
+            top: 4px;
+        }
+
+        .wrapper .register-link {
+            font-size: 14.5px;
+            text-align: center;
+            margin: 20px 0 15px;
+        }
+
+        .wrapper .register-link p a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link p a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 477px){
+            body {
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+        } 
+        .wrapper {
+            width: 100%;
+            padding: 20px 20px;
+        }
+        }
+    </style>
 </head>
+
 <body>
-	<section id="header">
-		<a href="index.html" class="logo"> <i class="fa-solid fa-cookie-bite"></i> <strong>DEVDAR </strong>Sweets </a>
-		<div>
-			<ul id="navbar">
-				<li><a  href="index.html">Home</a></li>
-				<li><a href="shop.html">Shop</a></li>
-				<li><a href="about.html">About</a></li>
-				<li><a class="active" href="contact.html">Contact</a></li>
-				
-				<a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
-				<div class="dropdown">
-					<h6 id="greet" class="user-greeting"></h6>
-					<div class="dropdown-content">
-					  <a href="mycart.html">My Cart</a>
-					  <a href="myorders.html">My Orders</a>
-					  <a href="profile.html">Profile</a>
-					</div>
-			</ul>
-		</div>
-		<div id="mobile">
-			<i id="bar" class="fas fa-outdent"></i>
-		</div>
-	</section>
-	<section id="page-header" class="about-header">
-		<h2 style="color: #fff;">Lets Talk</h2>
-		<p style="color: #fff;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, non tempore.</p>
-	</section>
-    <section id="contact-details" class="section-p1">
-        <div class="details">
-            <span>GET IN TOUCH WITH US</span>
-            <h2>Visit one of our agency locations or contact us today</h2>
-            <h3>Head Office</h3>
-            <div>
-                <li>
-                    <i class="fa-solid fa-map"></i>
-                    <p>532 MG Road, Street 29, Bengaluru </p>
-                </li>
-                <li>
-                    <i class="fa-solid fa-envelope"></i>
-                    <p>devdarsweets@gmail.com</p>
-                </li>
-                <li>
-                    <i class="fa-solid fa-phone"></i>
-                    <p>08198-229312/(+91)93xxxxx785</p>
-                </li>
-                <li>
-                    <i class="fa-solid fa-clock"></i>
-                    <p>8:00 - 20:00 Mon-Sat</p>
-                </li>
+    <form id="MainForm">
+        <div class="wrapper">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input id="login_email" type="email" placeholder="Email" required />
+                <i class='bx bxs-user-circle'></i>
+            </div>
+            <div class="input-box">
+                <input id="login_password" type="password" placeholder="Enter Password" required />
+                <!-- <i class="fa fa-fw fa-eye field-icon"></i> -->
+            </div>
+            <button type="submit" id="login_submit">Login</button>
+            <div class="register-link">
+                <p>Don't have an account?<a href="signup.html">Register here</a></p>
             </div>
         </div>
-        <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9554966950514!2d77.60687307332279!3d12.974698287340944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1687393dbc13%3A0x8b70c8e652b73d9e!2sMahatma%20Gandhi%20Rd%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1697356417712!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </section>
-    <section id="form-details">
-        <form onsubmit="sendEmail(), reset(); return false;">
-            <span>LEAVE A MESSAGE</span>
-            <h2>We love to hear from you</h2>
-            <input type="text" id="name" placeholder="Your Name" required="required">
-            <input type="text" id="email" placeholder="Email" required="required">
-            <textarea  cols="30" rows="10" id="message" placeholder="Your Message" required="required"></textarea>
-            <input type="submit" name="" value="Submit">
-        </form>
-        <div class="people">
-            <div>
-                <p><span>Dev Singh</span>Senior marketing manager <br> Phone: 08192-23456 <br> Email: devsingh@gmail.com</p>
-            </div>
-            <div>
-                <p><span>Amogh Narwal</span>Assistant marketing manager <br> Phone: 08192-23456 <br> Email: devsingh@gmail.com</p>
-            </div>
-            <div>
-                <p><span>Bhuvan Hooda</span>Sales manager <br> Phone: 08192-23456 <br> Email: devsingh@gmail.com</p>
-            </div>
-            <div>
-                <p><span>Rohan Smith</span> Assistant Sales manager <br> Phone: 08192-23456 <br> Email: devsingh@gmail.com</p>
-            </div>
-        </div>
-    </section>
-	<footer class="section-p1">
-		<div class="col">
-			<h4>Contact</h4>
-			<p><strong>Adress:</strong>532 MG Road, Street 29, Bengaluru </p>
-			<p><strong>Phone:</strong>08198-229312/(+91)93xxxxx785</p>
-			<p><strong>Hours:</strong>8:00 - 20:00 Mon-Sat</p>
-			<div class="follow">
-				<h4>Follow us</h4>
-				<div class="icons">
-					<i class="fab fa-facebook"></i>
-					<i class="fab fa-twitter"></i>
-					<i class="fab fa-instagram"></i>
-					<i class="fab fa-youtube"></i>
-				</div>
-			</div>
-		</div>
-		<div class="col">
-			<h4>About</h4>
-			<a href="#">About Us</a>
-			<a href="#">Delivery Information</a>
-			<a href="#">Privacy Policy</a>
-			<a href="#">Terms & Conditions</a>
-			<a href="#">Contact Us</a>
-		</div>
-		<div class="col">
-			<h4>My Account</h4>
-			<a href="#">Sign In</a>
-			<a href="#">View Cart</a>
-			<a href="#">Help</a>
-		</div>
-		<div class="copyright">
-			<hr><hr>
-			<br>
-			<p>&copy; Copyright 2023, Devdar Sweets</p>
-		</div>
-		
+    </form>
 
-	</footer>
+    <!-- ----------------------------------------d--------------------- -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
-		<script src="https://smtpjs.com/v3/smtp.js"></script>
-        <script>
-            
-            function sendEmail(){
-              Email.send({
-              SecureToken:"6c1816ba-5efa-4b31-9cd2-3d3bc42e8f1f",
-              To: 'manjudarshan29@outlook.com',
-              From :'rorio045@gmail.com',
-              Subject : "Contact details query",
-              Body : "Name:"+ document.getElementById("name").value
-                    +"<br> Email:"+ document.getElementById("email").value
-                    +"<br> Message:"+ document.getElementById("message").value
-              }).then(
-               message => alert('Message sent successfully')
-               );
-            }
-     	</script>
-         <script>
-            let UserCreds = JSON.parse(sessionStorage.getItem("user-creds"));
-            let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
-        
-            let GreetHead = document.getElementById('greet');
-            let Navbar = document.getElementById('navbar');
-            let SignoutBtn; // declare SignoutBtn outside functions to access it globally
-            let CreateAccountLink; // declare CreateAccountLink outside functions to access it globally
-        
-            let Signout = () => {
-                sessionStorage.removeItem("user-creds");
-                sessionStorage.removeItem("user-info");
-                GreetHead.innerText = '';
-                if (SignoutBtn) {
-                    SignoutBtn.style.display = 'none'; // hide the sign-out link
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
+        import { getDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+  apiKey: "AIzaSyAgWVPZGPzaHoxDuSeWWDrDtcOcyeiWt_k",
+  authDomain: "devdar-ce8ba.firebaseapp.com",
+  databaseURL: "https://devdar-ce8ba-default-rtdb.firebaseio.com",
+  projectId: "devdar-ce8ba",
+  storageBucket: "devdar-ce8ba.appspot.com",
+  messagingSenderId: "562140767505",
+  appId: "1:562140767505:web:31605600f7c115bf1918b0",
+  measurementId: "G-XSYBG68LKZ"
+};
+   
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase();
+        const auth = getAuth(app);
+        const dbref = ref(db);
+
+        let login_email = document.getElementById('login_email');
+        const login_password = document.getElementById('login_password');
+        const mainForm = document.getElementById('MainForm');
+
+
+        let SignInUser = evt => {
+    evt.preventDefault();
+    let redirectUrl = document.referrer; // Store the URL of the current page
+    signInWithEmailAndPassword(auth, login_email.value, login_password.value)
+        .then((credentials) => {
+            get(child(dbref, 'Devdar customer info-->' + credentials.user.uid)).then((snapshot) => {
+                if (snapshot.exists) {
+                    const userData = snapshot.val();
+                    sessionStorage.setItem("user-info", JSON.stringify({
+                        username: userData.username, // Change this to the username field from your database
+                    }));
+                    sessionStorage.setItem("user-creds", JSON.stringify(credentials.user));
+                    // Redirect the user to the stored URL
+                    window.location.href = redirectUrl;
                 }
-                if (CreateAccountLink) {
-                    CreateAccountLink.innerText = 'Login';
-                    CreateAccountLink.href = 'login.html';
-                    CreateAccountLink.style.display = 'block'; // display the create account link
-                    CreateAccountLink.classList.add('navbar-link'); // add the appropriate class for styling
-                }
-            }
-        
-            let CheckCred = () => {
-                if (UserCreds) {
-                    GreetHead.innerText = `Hii ${UserInfo.username}!  `;
-                    const navbarItem = document.createElement('li');
-        
-                    // Sign out link
-                    SignoutBtn = document.createElement('a');
-                    SignoutBtn.href = '#'; // replace with the appropriate link
-                    SignoutBtn.innerText = 'Sign Out';
-                    SignoutBtn.onclick = Signout;
-                    SignoutBtn.classList.add('navbar-link'); // add the appropriate class for styling
-                    navbarItem.appendChild(SignoutBtn);
-        
-                    // Create account link
-                    CreateAccountLink = document.createElement('a');
-                    CreateAccountLink.style.display = 'none'; // hide the link by default
-                    CreateAccountLink.classList.add('navbar-link'); // add the appropriate class for styling
-                    Navbar.appendChild(navbarItem);
-                    Navbar.appendChild(CreateAccountLink);
-                } else {
-                    CreateAccountLink = document.createElement('a');
-                    CreateAccountLink.href = 'login.html'; // Replace with the appropriate link
-                    CreateAccountLink.innerText = 'Login';
-                    CreateAccountLink.classList.add('navbar-link'); // add the appropriate class for styling
-                    Navbar.appendChild(CreateAccountLink);
-                }
-            };
-        
-            window.addEventListener('load', CheckCred);
-        </script>
+            });
+        })
+        .catch((error) => {
+            alert(error.message);
+            console.log(error.code);
+            console.log(error.message);
+        });
+};
+
+mainForm.addEventListener('submit', SignInUser);
+    </script>
 </body>
-
 
 </html>
